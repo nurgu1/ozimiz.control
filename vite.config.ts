@@ -10,6 +10,7 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
+  base: "/ozimiz.control/",
   resolve: {
     alias: {
       // Alias @ to the src directory
