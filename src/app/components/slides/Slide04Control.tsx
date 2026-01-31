@@ -1,6 +1,6 @@
 import { motion } from 'motion/react';
 
-export function Slide04Focus() {
+export function Slide04Control() {
   return (
     <div className="w-full h-screen flex flex-col items-center justify-center bg-black text-white relative overflow-hidden">
       
