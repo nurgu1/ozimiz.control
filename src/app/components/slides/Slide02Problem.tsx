@@ -1,7 +1,7 @@
 import { motion } from 'motion/react';
 import { 
   FileQuestion, AlertCircle, TrendingDown, 
-  FileWarning, WifiOff, DatabaseZap,  cloudSync, FileX, MessageSquareWarning 
+  FileWarning, WifiOff, DatabaseZap,folderSearch , FileX, MessageSquareWarning 
 } from 'lucide-react';
 
 export function Slide02Problem() {
