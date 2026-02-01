@@ -7,14 +7,14 @@ export function Slide01Timeline() {
       icon: Mountain,
       label: 'Память',
       sub: 'Устная традиция',
-      image: 'https://images.unsplash.com/photo-1649516620945-328a075f14aa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhbmNpZW50JTIwY2F2ZSUyMHdhbGwlMjBwcmltaXRpdmV8ZW58MXx8fHwxNzY5NzEwNTc4fDA&ixlib=rb-4.1.0&q=80&w=1080',
+      image: 'https://media.istockphoto.com/id/1144823518/photo/the-image-of-ancient-people-and-animals-on-the-wall.jpg?s=2048x2048&w=is&k=20&c=i_ZOMaDUip0hwAlgjYzMa3OYWWErv7QR8geE0DqQuR0=',
       delay: 0.2
     },
     {
       icon: FileText,
       label: 'Бумага',
       sub: 'Документы и архивы',
-      image: 'https://images.unsplash.com/photo-1760307837850-13db8b0d94cb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxvbGQlMjBwYXBlciUyMGRvY3VtZW50cyUyMHZpbnRhZ2V8ZW58MXx8fHwxNzY5NzEwNTc4fDA&ixlib=rb-4.1.0&q=80&w=1080',
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPCqFIAGtYhr7QmVuBaK1iXopEsuTPs_r7nQ&s',
       delay: 0.4
     },
     {
