@@ -1,5 +1,8 @@
 import { motion } from 'motion/react';
-import { FileQuestion, AlertCircle, TrendingDown, X } from 'lucide-react';
+import { 
+  FileQuestion, AlertCircle, TrendingDown, 
+  FileWarning, WifiOff, DatabaseZap,  cloudSync, FileX, MessageSquareWarning 
+} from 'lucide-react';
 
 export function Slide02Problem() {
   const issues = [
@@ -29,13 +32,23 @@ export function Slide02Problem() {
     }
   ];
 
+  // Массив иконок для орбиты (вместо минусов)
+  const orbitIcons = [
+    FileWarning, 
+    WifiOff, 
+    DatabaseZap, 
+    ServerOff, 
+    FileX, 
+    MessageSquareWarning
+  ];
+
   return (
-    <div className="w-full h-screen flex flex-col items-center justify-between bg-[#0a0a0a] text-white p-6 relative overflow-hidden">
+    <div className="w-full h-full min-h-screen flex flex-col items-center justify-between bg-[#0a0a0a] text-white p-6 relative overflow-hidden">
       
-      {/* Background Ambient Glow (Red/Orange for "Problem" theme) */}
+      {/* Background Ambient Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-red-900/10 blur-[100px] rounded-full pointer-events-none" />
 
-      {/* Chaotic Background Elements (Subtler) */}
+      {/* Chaotic Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {[...Array(8)].map((_, i) => (
           <motion.div
@@ -75,14 +88,14 @@ export function Slide02Problem() {
         </h1>
       </motion.div>
 
-      {/* 2. Central Visualization (Responsive) */}
+      {/* 2. Central Visualization */}
       <div className="flex-1 w-full flex items-center justify-center relative my-4">
         <div className="relative w-[300px] h-[300px] md:w-[400px] md:h-[400px]">
           
-          {/* Orbiting Elements */}
-          {[...Array(6)].map((_, i) => {
-            const angle = (i / 6) * Math.PI * 2;
-            const radius = 140; // Reduced radius to fit screen
+          {/* Orbiting Elements with ICONS */}
+          {orbitIcons.map((OrbitIcon, i) => {
+            const angle = (i / orbitIcons.length) * Math.PI * 2;
+            const radius = 140;
             const x = Math.cos(angle) * radius;
             const y = Math.sin(angle) * radius;
 
@@ -97,19 +110,19 @@ export function Slide02Problem() {
                 {/* Connection Line */}
                 <motion.div 
                   initial={{ height: 0, opacity: 0 }}
-                  animate={{ height: radius - 40, opacity: 1 }} // Don't touch center
+                  animate={{ height: radius - 40, opacity: 1 }}
                   style={{ rotate: `${i * 60 + 90}deg`, transformOrigin: "top center" }}
                   transition={{ delay: 1, duration: 0.5 }}
                   className="absolute top-1/2 left-1/2 w-[1px] bg-gradient-to-b from-white/20 to-transparent -z-10"
                 />
 
-                {/* Floating Card */}
+                {/* Floating Card with ICON instead of dash */}
                 <motion.div 
                   animate={{ y: [0, -10, 0] }}
                   transition={{ duration: 3, repeat: Infinity, delay: i * 0.5 }}
-                  className="w-16 h-16 bg-[#1a1a1a]/80 backdrop-blur-md border border-white/10 rounded-2xl flex items-center justify-center shadow-lg hover:border-red-500/40 transition-colors"
+                  className="w-14 h-14 bg-[#1a1a1a]/90 backdrop-blur-md border border-white/10 rounded-xl flex items-center justify-center shadow-lg group hover:border-red-500/40 transition-colors cursor-default"
                 >
-                  <div className="w-8 h-1 bg-white/20 rounded-full" />
+                  <OrbitIcon className="w-6 h-6 text-white/40 group-hover:text-red-400 transition-colors" />
                 </motion.div>
               </motion.div>
             );
@@ -133,7 +146,7 @@ export function Slide02Problem() {
         </div>
       </div>
 
-      {/* 3. Bottom Issues (Grid layout to stay visible) */}
+      {/* 3. Bottom Issues */}
       <div className="w-full max-w-5xl z-10 pb-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {issues.map((issue, index) => {
