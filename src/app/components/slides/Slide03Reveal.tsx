@@ -5,13 +5,10 @@ import { DollarSign, Activity, Users, Zap } from 'lucide-react';
 export function Slide03Reveal() {
   const [step, setStep] = useState(0);
 
-  // Сценарий анимации (как в кино)
+  // Сценарий анимации
   useEffect(() => {
-    // 1. Появляется "Новый уровень"
     const timer1 = setTimeout(() => setStep(1), 500);
-    // 2. Появляется Ozimiz.Control
     const timer2 = setTimeout(() => setStep(2), 2000);
-    // 3. Появляются карточки вокруг
     const timer3 = setTimeout(() => setStep(3), 3500);
 
     return () => {
@@ -21,10 +18,39 @@ export function Slide03Reveal() {
     };
   }, []);
 
+  // Жестко задаем позиции (x, y) относительно центра (0,0)
+  // Y отрицательный = вверх, Y положительный = вниз
   const zones = [
-    { icon: DollarSign, label: 'Финансы', color: 'from-emerald-400 to-green-600', border: 'border-emerald-500/30', shadow: 'shadow-emerald-500/20' },
-    { icon: Activity, label: 'Процессы', color: 'from-blue-400 to-cyan-600', border: 'border-blue-500/30', shadow: 'shadow-blue-500/20' },
-    { icon: Users, label: 'Люди', color: 'from-purple-400 to-pink-600', border: 'border-purple-500/30', shadow: 'shadow-purple-500/20' }
+    { 
+      id: 'process',
+      icon: Activity, 
+      label: 'Процессы', 
+      color: 'from-blue-400 to-cyan-600', 
+      border: 'border-blue-500/30', 
+      shadow: 'shadow-blue-500/20',
+      x: 0, 
+      y: -220 // ВВЕРХУ
+    },
+    { 
+      id: 'finance',
+      icon: DollarSign, 
+      label: 'Финансы', 
+      color: 'from-emerald-400 to-green-600', 
+      border: 'border-emerald-500/30', 
+      shadow: 'shadow-emerald-500/20',
+      x: -200, 
+      y: 150 // СЛЕВА СНИЗУ
+    },
+    { 
+      id: 'people',
+      icon: Users, 
+      label: 'Люди', 
+      color: 'from-purple-400 to-pink-600', 
+      border: 'border-purple-500/30', 
+      shadow: 'shadow-purple-500/20',
+      x: 200, 
+      y: 150 // СПРАВА СНИЗУ
+    }
   ];
 
   return (
@@ -40,15 +66,15 @@ export function Slide03Reveal() {
          />
       </div>
 
-      <div className="relative z-10 flex flex-col items-center">
+      <div className="relative z-10 flex flex-col items-center w-full max-w-5xl">
         
         {/* 1. "Новый уровень" (Intro) */}
         {step >= 1 && (
           <motion.div
-            initial={{ opacity: 0, y: 20, scale: 0.9 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
-            className="mb-8"
+            className="mb-12"
           >
             <div className="px-4 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-md">
               <span className="text-white/60 text-sm tracking-[0.4em] uppercase font-medium">Новый уровень</span>
@@ -59,79 +85,84 @@ export function Slide03Reveal() {
         {/* 2. LOGO REVEAL */}
         {step >= 2 && (
           <motion.div
-            initial={{ opacity: 0, scale: 0.5, filter: "blur(20px)" }}
+            initial={{ opacity: 0, scale: 0.9, filter: "blur(10px)" }}
             animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-            transition={{ duration: 1.2, ease: "easeOut" }}
-            className="text-center mb-16 relative"
+            transition={{ duration: 1 }}
+            className="text-center mb-16 relative w-full"
           >
             <h1 className="text-6xl md:text-8xl font-light tracking-tighter mb-8 bg-clip-text text-transparent bg-gradient-to-b from-white via-white to-white/50">
               Ozimiz<span className="text-blue-500 font-normal">.Control</span>
             </h1>
 
-            {/* 3 Keywords - appear one by one */}
-            <div className="flex gap-6 justify-center">
+            <div className="flex gap-4 md:gap-8 justify-center">
               {['Единый контур', 'Гибкость', 'Контроль'].map((word, index) => (
                 <motion.div
                   key={word}
-                  initial={{ opacity: 0, y: 20, scale: 0.8 }}
-                  animate={{ opacity: 1, y: 0, scale: 1.1 }} // Scale up slightly
-                  transition={{ delay: 0.5 + index * 0.3, duration: 0.6, type: "spring" }}
-                  className="px-6 py-2 rounded-xl bg-blue-500/10 border border-blue-500/20 backdrop-blur-md shadow-lg shadow-blue-900/20"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5 + index * 0.2, duration: 0.5 }}
+                  className="px-5 py-2 rounded-xl bg-blue-500/5 border border-blue-500/10 backdrop-blur-md"
                 >
-                  <span className="text-blue-100 text-lg font-light">{word}</span>
+                  <span className="text-blue-100 text-base md:text-lg font-light">{word}</span>
                 </motion.div>
               ))}
             </div>
           </motion.div>
         )}
 
-        {/* 3. STATIC SYSTEM FORMATION (No Rotation) */}
+        {/* 3. STATIC SYSTEM FORMATION */}
         {step >= 3 && (
-          <div className="relative w-[600px] h-[400px] flex items-center justify-center mt-8">
+          <div className="relative w-[600px] h-[400px] flex items-center justify-center mt-4">
             
             {/* Central Hub Icon */}
             <motion.div
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               transition={{ type: "spring", duration: 1 }}
-              className="absolute z-20 w-32 h-32 rounded-3xl bg-black border border-blue-500/50 flex items-center justify-center shadow-[0_0_60px_rgba(59,130,246,0.3)]"
+              className="absolute z-20 w-28 h-28 rounded-3xl bg-black border border-blue-500/50 flex items-center justify-center shadow-[0_0_60px_rgba(59,130,246,0.2)]"
             >
-              <Zap className="w-14 h-14 text-blue-500 fill-blue-500/20" />
+              <Zap className="w-12 h-12 text-blue-500 fill-blue-500/20" />
             </motion.div>
 
-            {/* Zones - Appearing around center */}
+            {/* Zones */}
             {zones.map((zone, index) => {
               const Icon = zone.icon;
-              // Positioning: Left-Bottom, Top, Right-Bottom triangle
-              const angles = [210, -90, 30]; // Degrees
-              const angleRad = angles[index] * (Math.PI / 180);
-              const radius = 240;
-              
-              const x = Math.cos(angleRad) * radius;
-              const y = Math.sin(angleRad) * radius;
-
               return (
                 <motion.div
                   key={zone.label}
                   initial={{ opacity: 0, x: 0, y: 0, scale: 0 }}
-                  animate={{ opacity: 1, x, y, scale: 1 }}
+                  animate={{ opacity: 1, x: zone.x, y: zone.y, scale: 1 }}
                   transition={{ delay: 0.5 + index * 0.2, duration: 0.8, type: "spring" }}
-                  className="absolute"
+                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" // Центрируем элемент перед смещением
                 >
-                  {/* Connection Line to Center */}
-                  <motion.div 
-                     initial={{ opacity: 0 }}
-                     animate={{ opacity: 1 }}
-                     transition={{ delay: 1.5, duration: 1 }}
-                     className="absolute top-1/2 left-1/2 h-[1px] bg-gradient-to-r from-blue-500/30 to-transparent origin-left -z-10"
-                     style={{ 
-                       width: radius, 
-                       transform: `translate(-50%, -50%) rotate(${angles[index] + 180}deg) translate(${radius/2}px, 0)` 
-                     }}
-                  />
+                  {/* Connection Line to Center (Draws backwards from item to center) */}
+                  <motion.svg
+                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 pointer-events-none"
+                    width="600"
+                    height="600"
+                    style={{ overflow: 'visible' }}
+                  >
+                    <motion.line
+                      x1="0"
+                      y1="0" // From center of card
+                      x2={-zone.x} // To center of hub (inverted relative to card)
+                      y2={-zone.y}
+                      stroke="url(#gradient)"
+                      strokeWidth="1"
+                      initial={{ pathLength: 0, opacity: 0 }}
+                      animate={{ pathLength: 1, opacity: 0.3 }}
+                      transition={{ delay: 1.2, duration: 0.8 }}
+                    />
+                    <defs>
+                      <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stopColor="rgba(59, 130, 246, 0.5)" />
+                        <stop offset="100%" stopColor="transparent" />
+                      </linearGradient>
+                    </defs>
+                  </motion.svg>
 
                   {/* Card */}
-                  <div className={`relative w-28 h-28 rounded-2xl bg-[#111] border ${zone.border} ${zone.shadow} flex flex-col items-center justify-center gap-3 -translate-x-1/2 -translate-y-1/2`}>
+                  <div className={`w-28 h-28 rounded-2xl bg-[#111] border ${zone.border} ${zone.shadow} flex flex-col items-center justify-center gap-3`}>
                     <div className={`p-3 rounded-full bg-gradient-to-br ${zone.color} bg-opacity-10`}>
                       <Icon className="w-8 h-8 text-white" />
                     </div>
@@ -144,17 +175,6 @@ export function Slide03Reveal() {
         )}
 
       </div>
-
-      {/* Footer Text */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 0.3 }}
-        transition={{ delay: 4 }}
-        className="absolute bottom-8 text-white text-sm font-mono tracking-widest uppercase"
-      >
-        Система стабилизирована
-      </motion.div>
-
     </div>
   );
 }
