@@ -1,7 +1,8 @@
 import { motion } from 'motion/react';
+// Импортируем иконки для списка проблем И для летающих элементов орбиты
 import { 
   FileQuestion, AlertCircle, TrendingDown, 
-  FileWarning, WifiOff, DatabaseZap,folderSearch , FileX, MessageSquareWarning 
+  FileWarning, WifiOff, DatabaseZap, ServerOff, FileX, MessageSquareWarning 
 } from 'lucide-react';
 
 export function Slide02Problem() {
@@ -32,7 +33,7 @@ export function Slide02Problem() {
     }
   ];
 
-  // Массив иконок для орбиты (вместо минусов)
+  // Создаем массив иконок, которые будут летать по орбите вместо черточек
   const orbitIcons = [
     FileWarning, 
     WifiOff, 
@@ -43,7 +44,7 @@ export function Slide02Problem() {
   ];
 
   return (
-    <div className="w-full h-full min-h-screen flex flex-col items-center justify-between bg-[#0a0a0a] text-white p-6 relative overflow-hidden">
+    <div className="w-full h-screen flex flex-col items-center justify-between bg-[#0a0a0a] text-white p-6 relative overflow-hidden">
       
       {/* Background Ambient Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-red-900/10 blur-[100px] rounded-full pointer-events-none" />
@@ -92,10 +93,10 @@ export function Slide02Problem() {
       <div className="flex-1 w-full flex items-center justify-center relative my-4">
         <div className="relative w-[300px] h-[300px] md:w-[400px] md:h-[400px]">
           
-          {/* Orbiting Elements with ICONS */}
+          {/* Orbiting Elements */}
           {orbitIcons.map((OrbitIcon, i) => {
             const angle = (i / orbitIcons.length) * Math.PI * 2;
-            const radius = 140;
+            const radius = 140; // Радиус орбиты
             const x = Math.cos(angle) * radius;
             const y = Math.sin(angle) * radius;
 
@@ -107,7 +108,7 @@ export function Slide02Problem() {
                 transition={{ delay: 0.2 + i * 0.1, duration: 0.8, type: "spring" }}
                 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
               >
-                {/* Connection Line */}
+                {/* Линия от центра */}
                 <motion.div 
                   initial={{ height: 0, opacity: 0 }}
                   animate={{ height: radius - 40, opacity: 1 }}
@@ -116,19 +117,20 @@ export function Slide02Problem() {
                   className="absolute top-1/2 left-1/2 w-[1px] bg-gradient-to-b from-white/20 to-transparent -z-10"
                 />
 
-                {/* Floating Card with ICON instead of dash */}
+                {/* Летающая карточка с ИКОНКОЙ внутри */}
                 <motion.div 
                   animate={{ y: [0, -10, 0] }}
                   transition={{ duration: 3, repeat: Infinity, delay: i * 0.5 }}
-                  className="w-14 h-14 bg-[#1a1a1a]/90 backdrop-blur-md border border-white/10 rounded-xl flex items-center justify-center shadow-lg group hover:border-red-500/40 transition-colors cursor-default"
+                  className="w-14 h-14 bg-[#1a1a1a]/90 backdrop-blur-md border border-white/10 rounded-xl flex items-center justify-center shadow-lg hover:border-red-500/40 transition-colors"
                 >
+                  {/* ВОТ ЗДЕСЬ ТЕПЕРЬ ИКОНКА ВМЕСТО ЧЕРТОЧКИ */}
                   <OrbitIcon className="w-6 h-6 text-white/40 group-hover:text-red-400 transition-colors" />
                 </motion.div>
               </motion.div>
             );
           })}
 
-          {/* Center "Question" Pulse */}
+          {/* Central Question Mark */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
              <motion.div
                 animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0.2, 0.5] }}
