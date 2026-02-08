@@ -9,13 +9,9 @@ import { Slide03Reveal } from '@/app/components/slides/Slide03Reveal';
 
 // Block 2: Introduction
 import { Slide04Control } from '@/app/components/slides/Slide04Control';
-import { Slide05ThreePillars } from '@/app/components/slides/Slide05ThreePillars';
-import { Slide06Pains } from '@/app/components/slides/Slide06Pains';
 
 // Block 3: Solution
-import { Slide07Solution } from '@/app/components/slides/Slide07Solution';
 import { Slide08WhatIs } from '@/app/components/slides/Slide08WhatIs';
-import { Slide09Architecture } from '@/app/components/slides/Slide09Architecture';
 
 // Block 4: Modules
 import { Slide10Modules } from '@/app/components/slides/Slide10Modules';
@@ -51,11 +47,7 @@ export default function App() {
     <Slide02Problem key="slide-02" />,
     <Slide03Reveal key="slide-03" />,
     <Slide04Control key="slide-04" />,
-    <Slide05ThreePillars key="slide-05" />,
-    <Slide06Pains key="slide-06" />,
-    <Slide07Solution key="slide-07" />,
     <Slide08WhatIs key="slide-08" />,
-    <Slide09Architecture key="slide-09" />,
     <Slide10Modules key="slide-10" />,
     <Slide11SalesTasks key="slide-11" />,
     <Slide12MaterialsFinance key="slide-12" />,

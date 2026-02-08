@@ -1,119 +1,127 @@
 import { motion } from 'motion/react';
-import { Target, Zap, TrendingUp } from 'lucide-react';
 
 export function Slide08WhatIs() {
-  const properties = [
-    { label: 'Контроль', icon: Target, color: 'from-blue-400 to-cyan-500' },
-    { label: 'Гибкость', icon: Zap, color: 'from-purple-400 to-pink-500' },
-    { label: 'Масштабируемость', icon: TrendingUp, color: 'from-green-400 to-emerald-500' }
-  ];
-
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-black via-gray-900 to-black p-16">
-      {/* Header */}
-      <motion.div
-        initial={{ opacity: 0, y: -30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="text-center mb-16"
-      >
-        <div className="text-white/60 text-sm tracking-[0.3em] uppercase mb-4">
-          Позиционирование
-        </div>
-        <h1 className="text-6xl font-light text-white tracking-tight mb-8">
-          Что такое Ozimiz<span className="text-blue-400">.Control</span>
-        </h1>
-        
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 0.8 }}
-          className="max-w-4xl mx-auto text-2xl text-white/70 font-light leading-relaxed"
-        >
-          ERP-система для управления бизнес-процессами,
-          <br />
-          финансами и ответственностью в едином контуре
-        </motion.div>
-      </motion.div>
+    <div className="w-full h-screen flex items-center justify-center bg-gradient-to-br from-black via-gray-900 to-black p-16 relative overflow-hidden">
+      
+      {/* Background Grid */}
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:100px_100px]" />
+      
+      {/* Background Glow */}
+      <motion.div 
+        animate={{ opacity: [0.05, 0.15, 0.05] }}
+        transition={{ duration: 5, repeat: Infinity }}
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-900/20 blur-[150px] rounded-full" 
+      />
 
-      {/* Central Block */}
-      <div className="relative mb-20">
+      <div className="max-w-7xl w-full grid grid-cols-2 gap-16 items-center relative z-10">
+        
+        {/* Left: Text Content */}
         <motion.div
-          initial={{ scale: 0, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ delay: 1, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+          className="space-y-8"
         >
+          {/* Badge */}
           <motion.div
-            animate={{
-              boxShadow: [
-                '0 0 60px rgba(59, 130, 246, 0.2)',
-                '0 0 100px rgba(59, 130, 246, 0.4)',
-                '0 0 60px rgba(59, 130, 246, 0.2)',
-              ]
-            }}
-            transition={{ duration: 3, repeat: Infinity }}
-            className="px-16 py-12 rounded-3xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 backdrop-blur-xl border-2 border-blue-400/40"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.6 }}
+            className="inline-block px-4 py-1.5 border border-blue-500/20 rounded-full bg-blue-500/5 backdrop-blur-sm"
           >
-            <div className="text-7xl font-thin text-white text-center">
-              Ozimiz<span className="text-blue-400">.Control</span>
-            </div>
+            <span className="text-blue-400/80 text-sm tracking-[0.3em] uppercase font-medium">О НАС</span>
+          </motion.div>
+
+          {/* Title */}
+          <motion.h1 
+            className="text-5xl font-light text-white tracking-tight leading-tight"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.6 }}
+          >
+            Что такое <br/>
+            Ozimiz<span className="text-blue-400 font-normal">.Control</span>
+          </motion.h1>
+
+          {/* Description */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5, duration: 0.6 }}
+            className="space-y-4"
+          >
+            <p className="text-lg text-white/70 leading-relaxed font-light">
+              Отечественная ERP-система для комплексной автоматизации строительных и производственных предприятий.
+            </p>
+            
+            <p className="text-lg text-white/70 leading-relaxed font-light">
+              Она объединяет управление складами, продажами, производством, финансами, клиентами и персоналом в единой цифровой платформе.
+            </p>
+          </motion.div>
+
+          {/* Properties */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.7, duration: 0.6 }}
+            className="flex gap-4 pt-4"
+          >
+            {['Контроль', 'Гибкость', 'Масштабируемость'].map((item, index) => (
+              <motion.div
+                key={item}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.9 + index * 0.1, duration: 0.5 }}
+                className="px-4 py-2 rounded-lg bg-white/5 border border-white/10 backdrop-blur-sm"
+              >
+                <span className="text-white/80 text-sm font-light">{item}</span>
+              </motion.div>
+            ))}
           </motion.div>
         </motion.div>
-      </div>
 
-      {/* Properties */}
-      <div className="flex items-center justify-center gap-12">
-        {properties.map((prop, index) => {
-          const Icon = prop.icon;
-          const angle = (index * 120) * (Math.PI / 180);
+        {/* Right: Interface Screenshot */}
+        <motion.div
+          initial={{ opacity: 0, x: 50, scale: 0.95 }}
+          animate={{ opacity: 1, x: 0, scale: 1 }}
+          transition={{ delay: 0.6, duration: 0.8 }}
+          className="relative"
+        >
+          {/* Glow effect */}
+          <motion.div
+            animate={{ 
+              scale: [1, 1.1, 1],
+              opacity: [0.3, 0.5, 0.3]
+            }}
+            transition={{ duration: 3, repeat: Infinity }}
+            className="absolute inset-0 bg-gradient-to-br from-blue-500/30 to-purple-500/30 blur-3xl rounded-3xl"
+          />
           
-          return (
-            <motion.div
-              key={prop.label}
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.5 + index * 0.2, duration: 0.6 }}
-            >
-              <div className={`w-56 h-56 rounded-3xl bg-gradient-to-br ${prop.color} p-0.5`}>
-                <div className="w-full h-full bg-black/90 backdrop-blur-xl rounded-3xl flex flex-col items-center justify-center gap-4">
-                  <div className={`w-20 h-20 rounded-2xl bg-gradient-to-br ${prop.color} flex items-center justify-center`}>
-                    <Icon className="w-10 h-10 text-white" />
-                  </div>
-                  <div className="text-2xl text-white font-light">
-                    {prop.label}
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          );
-        })}
-      </div>
-
-      {/* Connection Lines */}
-      <svg className="absolute inset-0 w-full h-full pointer-events-none">
-        {properties.map((_, index) => {
-          const angle = (index * 120) * (Math.PI / 180);
-          const startX = 50;
-          const startY = 50;
-          const endX = 50 + Math.cos(angle) * 15;
-          const endY = 50 + Math.sin(angle) * 15;
-          
-          return (
-            <motion.line
-              key={index}
-              x1={`${startX}%`}
-              y1={`${startY}%`}
-              x2={`${endX}%`}
-              y2={`${endY}%`}
-              stroke="rgba(59, 130, 246, 0.3)"
-              strokeWidth="2"
-              initial={{ pathLength: 0 }}
-              animate={{ pathLength: 1 }}
-              transition={{ delay: 1.8 + index * 0.1, duration: 0.8 }}
+          {/* Screenshot container */}
+          <div className="relative rounded-2xl overflow-hidden border-2 border-blue-400/30 shadow-[0_0_60px_rgba(59,130,246,0.3)] bg-black/40 backdrop-blur-xl">
+            <img 
+              src="src/screenshots/mobile.svg" 
+              alt="Ozimiz.Control Interface"
+              className="w-full h-auto"
             />
-          );
-        })}
-      </svg>
+          </div>
+
+          {/* Corner accents */}
+          <motion.div
+            animate={{ rotate: [0, 90, 0] }}
+            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+            className="absolute -top-8 -right-8 w-32 h-32 border-2 border-blue-400/20 rounded-full"
+          />
+          
+          <motion.div
+            animate={{ rotate: [0, -90, 0] }}
+            transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+            className="absolute -bottom-8 -left-8 w-40 h-40 border-2 border-purple-400/20 rounded-full"
+          />
+        </motion.div>
+
+      </div>
     </div>
   );
 }

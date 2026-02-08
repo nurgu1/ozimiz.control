@@ -1,11 +1,10 @@
 import { motion } from 'motion/react';
 import { useState, useEffect } from 'react';
-import { DollarSign, Activity, Users, Zap } from 'lucide-react';
+import { DollarSign, Activity, Users } from 'lucide-react';
 
 export function Slide03Reveal() {
   const [step, setStep] = useState(0);
 
-  // Сценарий анимации
   useEffect(() => {
     const timer1 = setTimeout(() => setStep(1), 500);
     const timer2 = setTimeout(() => setStep(2), 2000);
@@ -18,63 +17,61 @@ export function Slide03Reveal() {
     };
   }, []);
 
-  // Жестко задаем позиции (x, y) относительно центра (0,0)
-  // Y отрицательный = вверх, Y положительный = вниз
-  const zones = [
-    { 
+  const columns = [
+    {
       id: 'process',
-      icon: Activity, 
-      label: 'Процессы', 
-      color: 'from-blue-400 to-cyan-600', 
-      border: 'border-blue-500/30', 
-      shadow: 'shadow-blue-500/20',
-      x: 0, 
-      y: -220 // ВВЕРХУ
+      icon: Activity,
+      label: 'Процессы',
+      title: 'Управление задачами',
+      color: 'from-blue-400 to-cyan-600',
+      glowColor: 'rgba(59, 130, 246, 0.4)',
+      borderColor: 'border-blue-500/50',
+      imageUrl: 'src/screenshots/processes.png',
     },
-    { 
+    {
       id: 'finance',
-      icon: DollarSign, 
-      label: 'Финансы', 
-      color: 'from-emerald-400 to-green-600', 
-      border: 'border-emerald-500/30', 
-      shadow: 'shadow-emerald-500/20',
-      x: -200, 
-      y: 150 // СЛЕВА СНИЗУ
+      icon: DollarSign,
+      label: 'Деньги',
+      title: 'Воронка продаж',
+      color: 'from-emerald-400 to-green-600',
+      glowColor: 'rgba(16, 185, 129, 0.4)',
+      borderColor: 'border-emerald-500/50',
+      imageUrl: 'src/screenshots/money.png',
     },
-    { 
+    {
       id: 'people',
-      icon: Users, 
-      label: 'Люди', 
-      color: 'from-purple-400 to-pink-600', 
-      border: 'border-purple-500/30', 
-      shadow: 'shadow-purple-500/20',
-      x: 200, 
-      y: 150 // СПРАВА СНИЗУ
+      icon: Users,
+      label: 'Люди',
+      title: 'Дашборд',
+      color: 'from-purple-400 to-pink-600',
+      glowColor: 'rgba(168, 85, 247, 0.4)',
+      borderColor: 'border-purple-500/50',
+      imageUrl: 'src/screenshots/people.png',
     }
   ];
 
   return (
     <div className="w-full h-screen flex flex-col items-center justify-center bg-[#0a0a0a] text-white relative overflow-hidden">
       
-      {/* Background Ambience */}
+      {/* Background */}
       <div className="absolute inset-0 pointer-events-none">
-         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:100px_100px]" />
-         <motion.div 
-           animate={{ opacity: [0.1, 0.3, 0.1] }}
-           transition={{ duration: 5, repeat: Infinity }}
-           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-900/20 blur-[150px] rounded-full" 
-         />
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:100px_100px]" />
+        <motion.div 
+          animate={{ opacity: [0.05, 0.15, 0.05] }}
+          transition={{ duration: 5, repeat: Infinity }}
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[800px] bg-blue-900/20 blur-[150px] rounded-full" 
+        />
       </div>
 
-      <div className="relative z-10 flex flex-col items-center w-full max-w-5xl">
+      <div className="relative z-10 flex flex-col items-center w-full max-w-[1400px] px-8">
         
-        {/* 1. "Новый уровень" (Intro) */}
+        {/* Intro Badge */}
         {step >= 1 && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
-            className="mb-12"
+            className="mb-6"
           >
             <div className="px-4 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-md">
               <span className="text-white/60 text-sm tracking-[0.4em] uppercase font-medium">Новый уровень</span>
@@ -82,95 +79,164 @@ export function Slide03Reveal() {
           </motion.div>
         )}
 
-        {/* 2. LOGO REVEAL */}
+        {/* Logo */}
         {step >= 2 && (
           <motion.div
             initial={{ opacity: 0, scale: 0.9, filter: "blur(10px)" }}
             animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
             transition={{ duration: 1 }}
-            className="text-center mb-16 relative w-full"
+            className="text-center mb-8 relative w-full"
           >
-            <h1 className="text-6xl md:text-8xl font-light tracking-tighter mb-8 bg-clip-text text-transparent bg-gradient-to-b from-white via-white to-white/50">
+            <h1 className="text-5xl md:text-7xl font-light tracking-tighter mb-4 bg-clip-text text-transparent bg-gradient-to-b from-white via-white to-white/50">
               Ozimiz<span className="text-blue-500 font-normal">.Control</span>
             </h1>
 
-            <div className="flex gap-4 md:gap-8 justify-center">
+            <div className="flex gap-4 md:gap-6 justify-center flex-wrap">
               {['Единый контур', 'Гибкость', 'Контроль'].map((word, index) => (
                 <motion.div
                   key={word}
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.5 + index * 0.2, duration: 0.5 }}
-                  className="px-5 py-2 rounded-xl bg-blue-500/5 border border-blue-500/10 backdrop-blur-md"
+                  className="px-4 py-1.5 rounded-xl bg-blue-500/5 border border-blue-500/10 backdrop-blur-md"
                 >
-                  <span className="text-blue-100 text-base md:text-lg font-light">{word}</span>
+                  <span className="text-blue-100 text-sm md:text-base font-light">{word}</span>
                 </motion.div>
               ))}
             </div>
           </motion.div>
         )}
 
-        {/* 3. STATIC SYSTEM FORMATION */}
+        {/* 3 Column Layout */}
         {step >= 3 && (
-          <div className="relative w-[600px] h-[400px] flex items-center justify-center mt-4">
+          <div className="w-full flex gap-6 justify-center items-start mt-8">
             
-            {/* Central Hub Icon */}
-            <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ type: "spring", duration: 1 }}
-              className="absolute z-20 w-28 h-28 rounded-3xl bg-black border border-blue-500/50 flex items-center justify-center shadow-[0_0_60px_rgba(59,130,246,0.2)]"
-            >
-              <Zap className="w-12 h-12 text-blue-500 fill-blue-500/20" />
-            </motion.div>
-
-            {/* Zones */}
-            {zones.map((zone, index) => {
-              const Icon = zone.icon;
+            {columns.map((column, index) => {
+              const Icon = column.icon;
+              
               return (
                 <motion.div
-                  key={zone.label}
-                  initial={{ opacity: 0, x: 0, y: 0, scale: 0 }}
-                  animate={{ opacity: 1, x: zone.x, y: zone.y, scale: 1 }}
-                  transition={{ delay: 0.5 + index * 0.2, duration: 0.8, type: "spring" }}
-                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" // Центрируем элемент перед смещением
+                  key={column.id}
+                  initial={{ opacity: 0, y: 50, scale: 0.9 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  transition={{ 
+                    delay: 0.5 + index * 0.2, 
+                    duration: 0.8,
+                    type: "spring",
+                    stiffness: 100
+                  }}
+                  className="flex-1 max-w-[420px] relative group"
                 >
-                  {/* Connection Line to Center (Draws backwards from item to center) */}
-                  <motion.svg
-                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 pointer-events-none"
-                    width="600"
-                    height="600"
-                    style={{ overflow: 'visible' }}
-                  >
-                    <motion.line
-                      x1="0"
-                      y1="0" // From center of card
-                      x2={-zone.x} // To center of hub (inverted relative to card)
-                      y2={-zone.y}
-                      stroke="url(#gradient)"
-                      strokeWidth="1"
-                      initial={{ pathLength: 0, opacity: 0 }}
-                      animate={{ pathLength: 1, opacity: 0.3 }}
-                      transition={{ delay: 1.2, duration: 0.8 }}
-                    />
-                    <defs>
-                      <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" stopColor="rgba(59, 130, 246, 0.5)" />
-                        <stop offset="100%" stopColor="transparent" />
-                      </linearGradient>
-                    </defs>
-                  </motion.svg>
+                  {/* Animated Glow Background */}
+                  <motion.div
+                    animate={{ 
+                      opacity: [0.3, 0.6, 0.3],
+                      scale: [1, 1.05, 1]
+                    }}
+                    transition={{ 
+                      duration: 3,
+                      repeat: Infinity,
+                      delay: index * 0.5
+                    }}
+                    className={`absolute -inset-4 bg-gradient-to-r ${column.color} opacity-20 blur-2xl rounded-3xl`}
+                    style={{ zIndex: -1 }}
+                  />
 
-                  {/* Card */}
-                  <div className={`w-28 h-28 rounded-2xl bg-[#111] border ${zone.border} ${zone.shadow} flex flex-col items-center justify-center gap-3`}>
-                    <div className={`p-3 rounded-full bg-gradient-to-br ${zone.color} bg-opacity-10`}>
-                      <Icon className="w-8 h-8 text-white" />
-                    </div>
-                    <span className="text-white/80 text-xs font-medium uppercase tracking-wider">{zone.label}</span>
+                  {/* Main Container */}
+                  <div className="relative">
+                    
+                    {/* Category Badge */}
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 1 + index * 0.2, duration: 0.5 }}
+                      className="flex items-center justify-center gap-2 mb-4"
+                    >
+                      <div className={`flex items-center gap-2 px-5 py-2 rounded-full bg-gradient-to-r ${column.color} shadow-lg`}>
+                        <Icon className="w-5 h-5 text-white" />
+                        <span className="text-white font-semibold text-base uppercase tracking-wide">
+                          {column.label}
+                        </span>
+                      </div>
+                    </motion.div>
+
+                    {/* Laptop Mockup */}
+                    <motion.div
+                      whileHover={{ 
+                        scale: 1.02,
+                        transition: { duration: 0.3 }
+                      }}
+                      className="relative"
+                    >
+                      {/* Laptop Container with Border Glow */}
+                      <div className={`relative rounded-2xl border-2 ${column.borderColor} bg-gradient-to-b from-gray-900 to-black p-3 shadow-2xl overflow-hidden`}>
+                        
+                        {/* Animated Border Glow */}
+                        <motion.div
+                          animate={{
+                            opacity: [0.5, 1, 0.5],
+                          }}
+                          transition={{
+                            duration: 2,
+                            repeat: Infinity,
+                            delay: index * 0.3
+                          }}
+                          className={`absolute inset-0 bg-gradient-to-r ${column.color} opacity-20 blur-xl pointer-events-none`}
+                        />
+
+                        {/* Screen Bezel */}
+                        <div className="relative bg-black rounded-xl p-2 overflow-hidden">
+                          
+                          {/* Screen Content */}
+                          <div className="relative w-full aspect-[16/10] bg-white rounded-lg overflow-hidden">
+                            <img 
+                              src={column.imageUrl} 
+                              alt={column.title}
+                              className="w-full h-full object-cover object-top"
+                            />
+                            
+                            {/* Hover Overlay */}
+                            <motion.div
+                              initial={{ opacity: 0 }}
+                              whileHover={{ opacity: 1 }}
+                              className={`absolute inset-0 bg-gradient-to-t ${column.color} opacity-0 hover:opacity-10 transition-opacity duration-300`}
+                            />
+                          </div>
+
+                          {/* Camera Notch */}
+                          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-1.5 bg-gray-800 rounded-b-lg z-10" />
+                        </div>
+
+                        {/* Keyboard Base */}
+                        <div className="mt-2 h-2 bg-gradient-to-b from-gray-800 to-gray-900 rounded-b-lg" />
+                      </div>
+
+                      {/* Bottom Glow */}
+                      <div 
+                        className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-[80%] h-12 blur-2xl rounded-full"
+                        style={{ 
+                          background: `radial-gradient(ellipse at center, ${column.glowColor}, transparent)` 
+                        }}
+                      />
+                    </motion.div>
+
+                    {/* Title Below */}
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: 1.3 + index * 0.2, duration: 0.5 }}
+                      className="text-center mt-8"
+                    >
+                      <p className="text-white/70 text-sm font-light tracking-wide">
+                        {column.title}
+                      </p>
+                    </motion.div>
+
                   </div>
                 </motion.div>
               );
             })}
+
           </div>
         )}
 
