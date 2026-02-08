@@ -29,7 +29,6 @@ import { Slide18Government } from '@/app/components/slides/Slide18Government';
 // Block 6: Technical
 import { Slide19Analytics } from '@/app/components/slides/Slide19Analytics';
 import { Slide20Security } from '@/app/components/slides/Slide20Security';
-import { Slide21Integrations } from '@/app/components/slides/Slide21Integrations';
 
 // Block 7-9: Final
 import { Slide22Pricing } from '@/app/components/slides/Slide22Pricing';
@@ -59,7 +58,6 @@ export default function App() {
     <Slide18Government key="slide-18" />,
     <Slide19Analytics key="slide-19" />,
     <Slide20Security key="slide-20" />,
-    <Slide21Integrations key="slide-21" />,
     <Slide22Pricing key="slide-22" />,
     <Slide23Effect key="slide-23" />,
     <Slide24WhyUs key="slide-24" />,
